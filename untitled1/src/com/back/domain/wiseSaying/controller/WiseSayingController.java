@@ -34,7 +34,7 @@ public class WiseSayingController {
     public void remove(String command){
         String numbersOnly = command.replaceAll("[^0-9]", "");
         int id = Integer.parseInt(numbersOnly);
-        if(WiseSayingService.remove(id)){
+        if(wiseSayingService.remove(id)){
             System.out.println(id + "번 명언이 삭제되었습니다.");
         }
         else{
@@ -65,7 +65,7 @@ public class WiseSayingController {
     }
 
     public void build(){
-        WiseSayingService.build();
+        wiseSayingService.build();
     }
 
 

@@ -15,12 +15,12 @@ public class WiseSayingService {
         wiseSayingRepository = new WiseSayingRepository();
     }
 
-    public static boolean remove(int id) {
-        return WiseSayingRepository.remove(id);
+    public boolean remove(int id) {
+        return wiseSayingRepository.remove(id);
     }
 
-    public static void build() {
-        WiseSayingRepository.build();
+    public void build() {
+        wiseSayingRepository.build();
     }
 
     public int write(String content, String author) { //명언을 등록하기
@@ -33,7 +33,7 @@ public class WiseSayingService {
         return id;
     }
 
-    public static WiseSaying read(int id) {
+    public WiseSaying read(int id) {
         return wiseSayingRepository.read(id);
     }
 
@@ -121,7 +121,7 @@ public class WiseSayingService {
     //전체 페이지 개수, 현재 페이지의 wiseSaying 리스트 반환
     //Null 반환하는 경우 -> 요청한 페이지가 전체 페이지 수보다 큰 경우
     public Map<Integer,List<WiseSaying>> search(int page, String keywordType, String keyword) {
-        List<WiseSaying> wiseSayingList =WiseSayingRepository.getWiseSayingList(); // 전체 wiseSaying 가져오기
+        List<WiseSaying> wiseSayingList =wiseSayingRepository.getWiseSayingList(); // 전체 wiseSaying 가져오기
         Collections.reverse(wiseSayingList); //전체 wiseSaying 역순으로 뒤집어서 최신순 정렬
         List<WiseSaying> resultWiseSayingList = new ArrayList<>();
 

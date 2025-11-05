@@ -15,7 +15,7 @@ public class WiseSayingRepository {
     public WiseSayingRepository() {
     }
 
-    public static boolean remove(int id) {
+    public boolean remove(int id) {
         try {
             File file = new File("./db/wiseSaying/" + id + ".json");
             if (file.exists()) {
@@ -29,7 +29,7 @@ public class WiseSayingRepository {
         }
     }
 
-    public static void build() {
+    public void build() {
         try {
             File dir = new File("./db/wiseSaying");
             int lastId = getLastIdFromFile();
@@ -60,7 +60,7 @@ public class WiseSayingRepository {
         }
     }
 
-    public static int getLastIdFromFile() {
+    public int getLastIdFromFile() {
         try {
             File dir = new File("./db/wiseSaying");
             if (!dir.exists()) dir.mkdirs();
@@ -97,7 +97,7 @@ public class WiseSayingRepository {
     }
 
 
-    public static List<WiseSaying> getWiseSayingList() {
+    public List<WiseSaying> getWiseSayingList() {
         try {
             int lastId = getLastIdFromFile();
             List<WiseSaying> wiseSayingList = new ArrayList<WiseSaying>();
@@ -117,7 +117,7 @@ public class WiseSayingRepository {
         return null;
     }
 
-    private static WiseSaying readJsonFile(String filePath) {
+    private WiseSaying readJsonFile(String filePath) {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             StringBuilder sb = new StringBuilder();
             String line;
@@ -139,7 +139,7 @@ public class WiseSayingRepository {
         }
     }
 
-    private static WiseSaying parseWiseSayings(String json) {
+    private WiseSaying parseWiseSayings(String json) {
         WiseSaying w = new WiseSaying();
 
         // id
@@ -159,7 +159,7 @@ public class WiseSayingRepository {
         return w;
     }
 
-    public static WiseSaying read(int id) {
+    public WiseSaying read(int id) {
         try {
             String fileName = "./db/wiseSaying/" + id + ".json";
             File file = new File(fileName);
