@@ -42,14 +42,14 @@ public class WiseSayingService {
         return wiseSayingRepository.getWiseSayingList();
     }
 
-    public static void modify(int id, String content, String author) {
+    public void modify(int id, String content, String author) {
         WiseSaying ws = new WiseSaying(id,content,author);
 
         wiseSayingRepository.write(ws);
     }
 
     //return이 null일 경우 잘못된 command
-    public static QueryParse queryParser(String command) {
+    public QueryParse queryParser(String command) {
         // ex) 목록?keywordType=author&keyword=작자
         command = command.toLowerCase();
         if(!command.contains("?")){ // 목록으로만 검색할 경우 -> 페이지 1로 해서 검색
@@ -84,7 +84,7 @@ public class WiseSayingService {
     }
 
 
-    public static int countPages(List<WiseSaying> wiseSayingList){
+    public int countPages(List<WiseSaying> wiseSayingList){
         final int WiseSayingOnPage = 5; // 한 페이지에 있는 wiseSaying 수
         int pageSize;
 
@@ -101,7 +101,7 @@ public class WiseSayingService {
 
 
     //keyword가 있으면 참, 없으면 거짓
-    public static List<WiseSaying> filteringKeyword(List<WiseSaying> wsList, String keywordType, String keyword) {
+    public List<WiseSaying> filteringKeyword(List<WiseSaying> wsList, String keywordType, String keyword) {
         List<WiseSaying> wiseSayingList = new ArrayList<>();
         for(WiseSaying ws : wsList){
             if(keywordType.equalsIgnoreCase("author")){
@@ -120,7 +120,7 @@ public class WiseSayingService {
 
     //전체 페이지 개수, 현재 페이지의 wiseSaying 리스트 반환
     //Null 반환하는 경우 -> 요청한 페이지가 전체 페이지 수보다 큰 경우
-    public static Map<Integer,List<WiseSaying>> search(int page, String keywordType, String keyword) {
+    public Map<Integer,List<WiseSaying>> search(int page, String keywordType, String keyword) {
         List<WiseSaying> wiseSayingList =WiseSayingRepository.getWiseSayingList(); // 전체 wiseSaying 가져오기
         Collections.reverse(wiseSayingList); //전체 wiseSaying 역순으로 뒤집어서 최신순 정렬
         List<WiseSaying> resultWiseSayingList = new ArrayList<>();

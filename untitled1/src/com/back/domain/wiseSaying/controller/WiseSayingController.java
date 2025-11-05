@@ -45,8 +45,7 @@ public class WiseSayingController {
     public void modify(String command){
         String numbersOnly = command.replaceAll("[^0-9]", "");
         int id = Integer.parseInt(numbersOnly);
-
-        WiseSaying w = WiseSayingService.read(id);
+        WiseSaying w = wiseSayingService.read(id);
 
         if(w != null){
             System.out.println("명언(기존) " + w.getContent());
@@ -58,7 +57,7 @@ public class WiseSayingController {
             System.out.print("작가 : ");
             String author = scanner.nextLine();
 
-            WiseSayingService.modify(id,content,author);
+            wiseSayingService.modify(id,content,author);
         }
         else{
             System.out.println(id+ "번 명언은 존재하지 않습니다.");
@@ -71,9 +70,9 @@ public class WiseSayingController {
 
 
     public void list(String command) {
-        QueryParse q = WiseSayingService.queryParser(command);
+        QueryParse q = wiseSayingService.queryParser(command);
         if(q.getPage() > 0) {
-            Map<Integer, List<WiseSaying>> result = WiseSayingService.search(q.getPage(), q.getKeywordType(), q.getKeyword());
+            Map<Integer, List<WiseSaying>> result = wiseSayingService.search(q.getPage(), q.getKeywordType(), q.getKeyword());
             if (result == null) {
                 System.out.println("잘못된 요청");
             } else {
