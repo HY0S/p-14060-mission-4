@@ -27,6 +27,8 @@ public class App {
 
         //TODO: 실행 시 list 개수 확인, 0개 일시 더미 데이터 10개 생성
 
+        wiseSayingController.dummyData();
+
         while (true) {
             System.out.print("명령) ");
             String command = scanner.nextLine().trim();

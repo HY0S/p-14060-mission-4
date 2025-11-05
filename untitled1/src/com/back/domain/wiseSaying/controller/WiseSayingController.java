@@ -100,4 +100,15 @@ public class WiseSayingController {
             }
         }
     }
+
+    public void dummyData() {
+        List<WiseSaying> wsList = wiseSayingService.list();
+        if (wsList == null || wsList.isEmpty()) {
+            for(int i=1;i<11;i++){
+                String content= "더미" + i;
+                String author = "더미작가" + i ;
+                wiseSayingService.write(content,author);
+            }
+        }
+    }
 }
